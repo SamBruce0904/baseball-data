@@ -1,0 +1,100 @@
+/* Modern Baseball Theme Styling */
+
+:root {
+  --baseball-navy: #0d2240;
+  --baseball-red: #ba122b;
+  --baseball-cream: #faf9f6;
+  --border-subtle: #e2e8f0;
+  --text-main: #2d3748;
+}
+
+body {
+  color: var(--text-main);
+  background-color: #f4f6f9;
+  /* Baseball diamond and red seam stitch pattern */
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(186, 18, 43, 0.03) 0%, transparent 35%),
+    radial-gradient(circle at 85% 85%, rgba(13, 34, 64, 0.04) 0%, transparent 40%),
+    url("data:image/svg+xml,%3Csvg width='140' height='140' viewBox='0 0 140 140' xmlns='http://www.w3.org/2000/svg'%3E%3C!-- Faint infield diamond --%3E%3Cpolygon points='70,25 115,70 70,115 25,70' fill='none' stroke='%230d2240' stroke-width='1' stroke-opacity='0.05'/%3E%3C!-- Baseball curved seams with red stitches --%3E%3Cpath d='M10,0 C35,45 35,95 10,140' fill='none' stroke='%23ba122b' stroke-width='1.5' stroke-dasharray='3,5' stroke-opacity='0.16'/%3E%3Cpath d='M130,0 C105,45 105,95 130,140' fill='none' stroke='%23ba122b' stroke-width='1.5' stroke-dasharray='3,5' stroke-opacity='0.16'/%3E%3C/svg%3E");
+  background-attachment: fixed;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.65;
+}
+
+/* Polished Baseball Navy Navigation Bar */
+.navbar {
+  background: linear-gradient(135deg, #0d2240 0%, #163664 100%) !important;
+  border-bottom: 3px solid var(--baseball-red);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #ffffff !important;
+}
+
+.navbar .nav-link {
+  color: #e2e8f0 !important;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  padding: 0.5rem 0.9rem !important;
+  border-radius: 6px;
+}
+
+.navbar .nav-link:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.navbar .nav-link.active {
+  color: #ffffff !important;
+  background-color: rgba(186, 18, 43, 0.35);
+  font-weight: 600;
+}
+
+/* Clean Main Content Card */
+#quarto-document-content {
+  background: #ffffff;
+  padding: 2.2rem 2.8rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-subtle);
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Typography & Headings */
+h1, h2, h3, h4 {
+  color: var(--baseball-navy);
+  font-weight: 700;
+}
+
+h1.title {
+  border-bottom: 2px solid #eef2f6;
+  padding-bottom: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  position: relative;
+  padding-left: 0.75rem;
+  border-left: 4px solid var(--baseball-red);
+}
+
+/* Clean Plot & Widget Containers */
+.html-widget, .plotly {
+  border-radius: 10px;
+  border: 1px solid #edf2f7;
+  padding: 6px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+/* Subtle table & code styling */
+table {
+  border-radius: 8px;
+  overflow: hidden;
+}

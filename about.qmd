@@ -2,4 +2,8 @@
 title: "About"
 ---
 
-About this project.
+## About Me & This Project
+
+I play baseball here at New College of Florida, and as an athlete, it's impossible not to notice the ongoing debate between old-school baseball tradition and modern analytics. Traditionalists often rely on feel, instinct, and repetition, while the modern analytical movement uses tracking technology to measure spin rates, launch angles, and exit velocities.
+
+To see whether technology has actually driven measurable improvement across the game, I analyzed historical player-season data from Lahman's Baseball Database, comparing the pre-Statcast era (2005–2014) to the modern Statcast era (2015–2025). This project investigates how tracking data has reshaped both pitching dominance and offensive contact at baseball's highest level.

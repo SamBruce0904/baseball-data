@@ -26,15 +26,9 @@ combined_trajectory <- inner_join(yearly_hh, yearly_k9, by = c("year" = "yearID"
   mutate(era = if_else(year < 2015, "Pre-Statcast (2005–2014)", "Post-Statcast (2015–2025)"))
 ```
 
-I have played baseball since I was young and am on the baseball team here at New College. As an athlete it is hard not to think about the statistical part of the game you are a part of, so naturally I was curious about how stats have changed over time in the biggest stage of baseball. I know that now more than ever, technology is a big part of sports, especially in MLB. On top of my curiosity, there has been discourse about this new technology in the baseball community. Many older, more traditional people around baseball do not see a need for technology. They played without it or coached without it, meaning they know they can be efficient without it. Younger, more statistical and analytical people around the game think the opposite, that if technology is not being used, you are missing out. I wanted to see how truly effective this technology was in terms of statistics. In my research, I found a website that lists the individual statistics for each player-season for the last 150 years or so (Lahman’s database). It allowed me to compare certain statistical categories that have improved over the last ten years and then relate them to the introduction of technology. I found that K/9 and Hard Hit % both increased dramatically after the introduction of technology into the game of baseball. This is important because it shows that the technology really has worked for most of the players in the big leagues, whether they were a hitter or pitcher. While there are obviously some outliers, there is an obvious increase in the averages of these stats over the two eras (PreStatCast and PostStatCast). We can see from these statistics that technology has had a positive impact on two very important stats in today’s game, showing that the younger and newer generation of baseball society is being supported by the numbers.
-
-## Game Evolution: Strikeout vs. Hard-Hit Trajectory
-
-Instead of tracking both metrics on a shared timeline, this **connected scatter plot (trajectory plot)** graphs them directly against each other. Tracing the path chronologically from 2005 (bottom left) to 2025 (top right) visualizes how Major League Baseball migrated diagonally upward—moving toward higher strikeout rates and higher exit velocities at the same time.
-
 ```{r}
 #| label: plot-game-trajectory
-plot_ly(data = combined_trajectory, x = ~avg_so9, y = ~avg_hard_hit, height = 420) |>
+plot_ly(data = combined_trajectory, x = ~avg_so9, y = ~avg_hard_hit, height = 450) |>
   # Chronological path connecting seasons
   add_paths(
     line = list(color = "#888888", width = 2, dash = "solid"),
@@ -44,7 +38,7 @@ plot_ly(data = combined_trajectory, x = ~avg_so9, y = ~avg_hard_hit, height = 42
   # Season marker points colored by era
   add_markers(
     color = ~era,
-    colors = c("Pre-Statcast (2005–2014)" = "#377eb8", "Post-Statcast (2015–2025)" = "#e41a1c"),
+    colors = c("Pre-Statcast (2005–2014)" = "#377eb8", "Post-Statcast (2015–2025)" = "#ba122b"),
     marker = list(size = 9, line = list(color = "black", width = 1)),
     text = ~paste0("<b>Season: ", year, "</b><br>Era: ", era, "<br>Strikeouts per 9: ", avg_so9, "<br>Hard-Hit Rate: ", avg_hard_hit, "%"),
     hoverinfo = "text"
@@ -94,3 +88,7 @@ plot_ly(data = combined_trajectory, x = ~avg_so9, y = ~avg_hard_hit, height = 42
   ) |>
   config(responsive = TRUE)
 ```
+
+## Analysis: The Two-Way Technological Surge
+
+Tracing Major League Baseball from 2005 (bottom left) to 2025 (top right) reveals an unmistakable diagonal migration: the game simultaneously produced significantly higher strikeout rates and higher exit velocities. Rather than giving an edge to only pitchers or only hitters, tracking technology elevated both disciplines at once. Pitchers leveraged spin tracking and release metrics to drive league average strikeouts from **6.55 K/9 in 2005** to **8.61 K/9 in 2025** (a 31.5% increase). Concurrently, hitters used launch angle and exit velocity analytics to optimize swing paths for hard contact, lifting average hard-hit rates from **30.2%** up to **42.1%**. This trajectory confirms that technology did not simply tilt the scale toward one side—it redefined the physical standards of the sport.

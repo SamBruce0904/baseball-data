@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "The Effects of StatCast"
+  title: "StatCast Data"
   navbar:
     left:
       - href: index.qmd
@@ -11,10 +11,15 @@ website:
         text: Story
       - href: more-data.qmd
         text: More Data
+      - href: players.qmd
+        text: Players
+      - href: stats-context.qmd
+        text: Stats Explained
       - href: about.qmd
         text: About
 
 format:
   html:
     theme: cosmo
+    css: styles.css
     toc: true

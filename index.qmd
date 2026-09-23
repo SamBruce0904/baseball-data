@@ -16,16 +16,49 @@ yearly_avg_hh <- hitters_hard_hit |>
   group_by(year, era) |>
   summarize(avg_hard_hit = mean(hard_hit_pct, na.rm = TRUE), .groups = "drop")
 
-# Pitcher seasons data (K/9)
+# Pitcher seasons data (K/9) with team information from Lahman
+pitcher_teams <- Lahman::Pitching |>
+  filter(yearID >= 2005) |>
+  group_by(playerID, yearID) |>
+  slice_max(IPouts, n = 1, with_ties = FALSE) |>
+  ungroup() |>
+  select(playerID, yearID, teamID)
+
+teams_map <- Lahman::Teams |>
+  filter(yearID >= 2005) |>
+  group_by(franchID) |>
+  slice_max(yearID, n = 1, with_ties = FALSE) |>
+  ungroup() |>
+  select(franchID, team_name = name) |>
+  mutate(team_name = case_when(
+    franchID == "ANA" ~ "Los Angeles Angels",
+    franchID == "OAK" ~ "Oakland Athletics",
+    franchID == "FLA" ~ "Miami Marlins",
+    franchID == "TBD" ~ "Tampa Bay Rays",
+    franchID == "WSN" ~ "Washington Nationals",
+    TRUE ~ team_name
+  ))
+
 pitcher_seasons <- read_csv("data/pitcher_seasons.csv") |>
   left_join(
     Lahman::People |> select(playerID, nameFirst, nameLast) |> mutate(name = paste(nameFirst, nameLast)),
     by = "playerID"
-  )
+  ) |>
+  left_join(pitcher_teams, by = c("playerID", "yearID")) |>
+  left_join(
+    Lahman::Teams |> select(yearID, teamID, franchID) |> distinct(),
+    by = c("yearID", "teamID")
+  ) |>
+  left_join(teams_map, by = "franchID")
+
+# Add small horizontal jitter so points do not stack vertically
+set.seed(42)
+pitcher_seasons <- pitcher_seasons |>
+  mutate(year_jitter = round(yearID + runif(n(), -0.22, 0.22), 2))
 
 yearly_pitching <- pitcher_seasons |>
   group_by(yearID, era) |>
-  summarize(avg_so9 = mean(so9), .groups = "drop")
+  summarize(avg_so9 = round(mean(so9), 2), .groups = "drop")
 ```
 
 The introduction of Major League Baseball's Statcast system in 2015 revolutionized how the sport is measured and played. By deploying high-resolution cameras and radar across every ballpark, Statcast enabled the tracking of granular metrics like exit velocity, launch angle, and pitch spin rates on every play.
@@ -34,64 +67,155 @@ This project examines how key baseball statistics evolved alongside this technol
 
 ## Strikeout Rates Over Time
 
-Each point represents an individual pitcher-season (minimum 30 IP), displaying real pitcher-level variation across thousands of observations. The solid line and points trace the annual league average K/9 across the pre-Statcast and post-Statcast eras.
+Each point represents an individual pitcher-season (minimum 30 IP), displaying real pitcher-level variation across thousands of observations. The dashed line traces the annual league average K/9 across the pre-Statcast and post-Statcast eras. Use the dropdown menu to choose individual teams and see their specific pitchers and franchise average.
 
 ```{r}
 #| label: plot-k9-pitcher-seasons
-p_k9 <- ggplot() +
-  geom_jitter(
-    data = pitcher_seasons,
-    aes(
-      x = yearID,
-      y = so9,
-      color = era,
-      text = paste0(name, " (", yearID, ")<br>K/9: ", round(so9, 2))
-    ),
-    alpha = 0.15,
-    width = 0.25,
-    size = 1.2
-  ) +
-  geom_line(
-    data = yearly_pitching,
-    aes(x = yearID, y = avg_so9),
-    color = "black",
-    linewidth = 1.2
-  ) +
-  geom_point(
-    data = yearly_pitching,
-    aes(
-      x = yearID,
-      y = avg_so9,
-      fill = era,
-      text = paste0(yearID, " League Avg K/9: ", round(avg_so9, 2))
-    ),
-    shape = 21,
-    size = 3,
-    color = "black"
-  ) +
-  geom_vline(xintercept = 2014.5, linetype = "dashed", color = "darkred", linewidth = 1) +
-  annotate(
-    "text",
-    x = 2014.8,
-    y = 16,
-    label = "Statcast Era Begins (2015)",
-    color = "darkred",
-    hjust = 0,
-    size = 3.5
-  ) +
-  scale_x_continuous(breaks = seq(2005, 2025, by = 5)) +
-  scale_color_manual(values = c("Pre-Statcast (2005–2014)" = "#377eb8", "Post-Statcast (2015–2025)" = "#e41a1c")) +
-  scale_fill_manual(values = c("Pre-Statcast (2005–2014)" = "#377eb8", "Post-Statcast (2015–2025)" = "#e41a1c")) +
-  labs(
-    title = "Strikeouts per 9 Innings (K/9) by Pitcher-Season (2005–2025)",
-    x = "Year",
-    y = "Average K/9",
-    color = "Era",
-    fill = "Era"
-  ) +
-  theme_minimal()
+teams_list <- sort(unique(pitcher_seasons$team_name))
+num_teams <- length(teams_list)
 
-ggplotly(p_k9, tooltip = "text", height = 420)
+# Team annual average K/9
+team_yearly <- pitcher_seasons |>
+  group_by(team_name, yearID) |>
+  summarize(team_avg_so9 = round(mean(so9), 2), .groups = "drop")
+
+p_k9 <- plot_ly(height = 460) |>
+  # 1. League average reference line
+  add_lines(
+    x = yearly_pitching$yearID,
+    y = yearly_pitching$avg_so9,
+    name = "League Avg",
+    line = list(color = "#222222", width = 2.5, dash = "dash"),
+    hoverinfo = "text",
+    text = paste0("<b>", yearly_pitching$yearID, " League Avg</b><br>K/9: ", yearly_pitching$avg_so9)
+  ) |>
+  # 2. Pre-Statcast pitchers (All)
+  add_markers(
+    data = pitcher_seasons |> filter(yearID < 2015),
+    x = ~year_jitter,
+    y = ~so9,
+    name = "Pre-Statcast (2005–2014)",
+    marker = list(color = "#377eb8", opacity = 0.2, size = 4),
+    hoverinfo = "text",
+    text = ~paste0("<b>", name, "</b> (", yearID, ")<br>Team: ", team_name, "<br>K/9: ", round(so9, 2))
+  ) |>
+  # 3. Post-Statcast pitchers (All)
+  add_markers(
+    data = pitcher_seasons |> filter(yearID >= 2015),
+    x = ~year_jitter,
+    y = ~so9,
+    name = "Post-Statcast (2015–2025)",
+    marker = list(color = "#e41a1c", opacity = 0.2, size = 4),
+    hoverinfo = "text",
+    text = ~paste0("<b>", name, "</b> (", yearID, ")<br>Team: ", team_name, "<br>K/9: ", round(so9, 2))
+  )
+
+# Add individual team traces (points and franchise average line)
+for (tm in teams_list) {
+  tm_ps <- pitcher_seasons |> filter(team_name == tm)
+  tm_avg <- team_yearly |> filter(team_name == tm)
+  
+  p_k9 <- p_k9 |>
+    add_markers(
+      x = tm_ps$year_jitter,
+      y = tm_ps$so9,
+      name = paste(tm, "Pitchers"),
+      marker = list(
+        color = if_else(tm_ps$yearID < 2015, "#377eb8", "#e41a1c"),
+        opacity = 0.8,
+        size = 6,
+        line = list(color = "black", width = 0.5)
+      ),
+      visible = FALSE,
+      hoverinfo = "text",
+      text = paste0("<b>", tm_ps$name, "</b> (", tm_ps$yearID, ")<br>Team: ", tm_ps$team_name, "<br>K/9: ", round(tm_ps$so9, 2))
+    ) |>
+    add_lines(
+      x = tm_avg$yearID,
+      y = tm_avg$team_avg_so9,
+      name = paste(tm, "Avg"),
+      line = list(color = "#ff7f00", width = 3),
+      visible = FALSE,
+      hoverinfo = "text",
+      text = paste0("<b>", tm_avg$yearID, " ", tm, " Avg</b><br>K/9: ", tm_avg$team_avg_so9)
+    )
+}
+
+# Construct visibility settings for dropdown buttons
+all_vis <- c(TRUE, TRUE, TRUE, rep(FALSE, num_teams * 2))
+buttons <- list(
+  list(
+    method = "restyle",
+    args = list("visible", as.list(all_vis)),
+    label = "All Teams"
+  )
+)
+
+for (i in seq_along(teams_list)) {
+  vis <- rep(FALSE, 3 + num_teams * 2)
+  vis[1] <- TRUE # Keep league average reference line visible
+  vis[3 + 2 * (i - 1) + 1] <- TRUE # Team pitcher points
+  vis[3 + 2 * (i - 1) + 2] <- TRUE # Team average line
+  buttons <- append(buttons, list(list(
+    method = "restyle",
+    args = list("visible", as.list(vis)),
+    label = teams_list[i]
+  )))
+}
+
+p_k9 <- p_k9 |> layout(
+  title = list(
+    text = "<b>Strikeouts per 9 Innings (K/9) by Pitcher-Season (2005–2025)</b>",
+    x = 0.5,
+    xanchor = "center",
+    y = 0.98,
+    font = list(size = 14)
+  ),
+  xaxis = list(
+    title = "Year",
+    dtick = 5,
+    gridcolor = "#f0f0f0"
+  ),
+  yaxis = list(
+    title = "Strikeouts per 9 Innings (K/9)",
+    dtick = 2,
+    gridcolor = "#f0f0f0"
+  ),
+  updatemenus = list(
+    list(
+      type = "dropdown",
+      direction = "down",
+      x = 0.0,
+      xanchor = "left",
+      y = 1.15,
+      yanchor = "top",
+      active = 0,
+      buttons = buttons
+    )
+  ),
+  shapes = list(
+    list(
+      type = "line",
+      x0 = 2014.5, x1 = 2014.5,
+      y0 = 0, y1 = 1, yref = "paper",
+      line = list(dash = "dot", color = "darkred", width = 1.5)
+    )
+  ),
+  annotations = list(
+    list(
+      x = 2014.7, y = 16,
+      text = "Statcast Era Begins (2015)",
+      showarrow = FALSE,
+      font = list(color = "darkred", size = 11),
+      xanchor = "left"
+    )
+  ),
+  margin = list(t = 85, b = 50, l = 50, r = 30),
+  legend = list(orientation = "h", x = 0.5, xanchor = "center", y = -0.15)
+) |>
+  config(responsive = TRUE)
+
+p_k9
 ```
 
 Between the pre-Statcast era (2005–2014) and the post-Statcast era (2015–2025), average pitcher strikeout rates increased from **7.21** to **8.63 K/9**, representing a **19.7% increase** across eras (and a **31.5% increase** from 6.55 in 2005 to 8.61 in 2025).

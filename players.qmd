@@ -1,0 +1,74 @@
+---
+title: "Players"
+execute:
+  echo: false
+  warning: false
+---
+
+```{r}
+#| message: false
+library(tidyverse)
+
+# Load Mike Trout swing & zone whiff data (2014 vs. 2019)
+trout_zone <- read_csv("data/trout_zone_whiff.csv") |>
+  mutate(era = fct_relevel(era, "Pre-Statcast (2014 MVP)", "Post-Statcast (2019 MVP)"))
+trout_swings <- read_csv("data/trout_swings.csv") |>
+  mutate(era = fct_relevel(era, "Pre-Statcast (2014 MVP)", "Post-Statcast (2019 MVP)"))
+```
+
+## Strike Zone Whiff Rate: Mike Trout (Pre- vs. Post-Statcast MVP)
+
+The evolution between Mike Trout's 2014 and 2019 strike zones illustrates how tracking technology created a data-driven arms race between hitters and pitchers. In the early Statcast era, teams utilized high-speed optical cameras and radar to measure pitch spin rates and induced vertical break, discovering that elevated fastballs were uniquely effective at generating whiffs against modern uppercut swing paths. Concurrently, hitters used granular pitch-tracking feedback and video analytics to eliminate swing inefficiencies, allowing Trout to virtually master the middle of the plate—his whiff rate in the heart of the zone dropped from **12.2% in 2014 down to just 4.9% in 2019**. In response, pitchers adjusted their scouting heat maps away from the center and attacked the upper quadrant with high-spin velocity, elevating his whiff rate at the top of the zone to **23.0%**. This shift demonstrates the broader impact of Statcast: as tracking data helped elite hitters dominate hittable pitches, pitchers adapted by targeting the extreme vertical boundaries of the strike zone.
+
+```{r}
+#| label: plot-trout-strikezone
+#| fig-width: 8.5
+#| fig-height: 4.8
+ggplot() +
+  # Semi-transparent zone tiles colored by whiff rate
+  geom_tile(
+    data = trout_zone,
+    aes(x = factor(x), y = factor(y), fill = whiff_pct),
+    alpha = 0.35,
+    color = "grey40",
+    linewidth = 1.2
+  ) +
+  # Individual swing dots jittered inside their respective zone
+  geom_jitter(
+    data = trout_swings,
+    aes(x = factor(x), y = factor(y), color = outcome),
+    width = 0.35,
+    height = 0.35,
+    alpha = 0.65,
+    size = 1.8
+  ) +
+  # Zone whiff % labels
+  geom_label(
+    data = trout_zone,
+    aes(x = factor(x), y = factor(y), label = paste0(round(whiff_pct, 1), "%")),
+    alpha = 0.75,
+    fontface = "bold",
+    size = 3.2,
+    color = "black"
+  ) +
+  scale_fill_gradient(low = "#4575b4", high = "#d73027", name = "Zone Whiff %") +
+  scale_color_manual(values = c("Contact / Foul" = "#7f7f7f", "Whiff (Miss)" = "#d73027"), name = "Swing Outcome") +
+  scale_x_discrete(labels = c("Inside", "Middle", "Away")) +
+  scale_y_discrete(labels = c("Low", "Middle", "High")) +
+  facet_wrap(~era) +
+  coord_fixed() +
+  labs(
+    title = "Mike Trout Strike Zone: Individual Swings & Whiff Rates",
+    subtitle = "Points represent individual swings (grey = contact/foul, red = whiff) over zone whiff %",
+    x = "Horizontal Location (to RHB)",
+    y = "Vertical Location"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid = element_blank(),
+    strip.text = element_text(face = "bold", size = 11),
+    plot.title = element_text(face = "bold", size = 13)
+  )
+```
+
+Between 2014 and 2019, Trout virtually eliminated whiffs in the heart of the zone—dropping from a **12.2% whiff rate** down to **4.9%**. Concurrently, pitchers shifted to attacking him with high fastballs, where his swing-and-miss rate increased to **23%** in the upper-inside quadrant.

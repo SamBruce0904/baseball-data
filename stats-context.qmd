@@ -1,0 +1,39 @@
+---
+title: "Context of the Statistics"
+---
+
+Understanding the metrics used throughout this analysis helps clarify how Major League Baseball has evolved. Here is what each statistic measures and why it matters in modern baseball.
+
+## Strikeouts per 9 Innings (K/9)
+
+- **What it is:** The average number of strikeouts a pitcher records for every 9 innings pitched.
+$$\text{K/9} = \frac{\text{Strikeouts} \times 9}{\text{Innings Pitched}}$$
+- **Why it matters:** Strikeouts are the purest measure of pitching dominance because they take the defense and ballpark dimensions out of the equation. As pitchers gained access to pitch-tracking data, league-wide K/9 rose significantly.
+
+## Hard-Hit Percentage (Hard-Hit %)
+
+- **What it is:** The proportion of batted balls hit with an exit velocity of **95 mph or greater**.
+$$\text{Hard-Hit \%} = \frac{\text{Batted Balls with Exit Velocity} \ge 95\text{ mph}}{\text{Total Batted Balls}} \times 100$$
+- **Pre-Statcast vs. Statcast measurement:**
+  - **Pre-Statcast (2005–2014):** Tracked by Baseball Info Solutions (BIS) scouts manually classifying contact into soft, medium, or hard trajectories through video analysis.
+  - **Statcast Era (2015–Present):** Tracked automatically using radar and high-speed cameras to record exact exit velocities.
+- **Why it matters:** Exit velocity is the strongest predictor of offensive success. Balls struck at 95+ mph produce the vast majority of extra-base hits and home runs.
+
+## Whiff Rate
+
+- **What it is:** The percentage of total swings where a batter swings and misses completely.
+$$\text{Whiff Rate} = \frac{\text{Swings and Misses}}{\text{Total Swings}} \times 100$$
+- **Why it matters:** Unlike batting average or overall contact, whiff rate pinpoints a batter's vulnerability against specific pitch types and zone locations—such as high fastballs or low breaking balls outside the zone.
+
+## The Statcast Context
+
+Prior to 2015, player evaluation relied on box-score results and scout observation. The introduction of Statcast in all 30 MLB stadiums equipped teams with automated optical cameras and radar to track:
+
+1. **Pitch movement & spin rate:** Helping pitchers design sharper, higher-rising fastballs that create more swings and misses.
+2. **Batted-ball trajectories (exit velocity & launch angle):** Helping hitters optimize their swing paths to elevate balls with high exit velocities.
+
+This data revolution explains why the league migrated diagonally toward higher strikeouts and harder-hit balls at the same time.
+
+## Learn More
+
+For full definitions and further reading on every tracking metric, explore the official [MLB Statcast Glossary](https://www.mlb.com/glossary/statcast).

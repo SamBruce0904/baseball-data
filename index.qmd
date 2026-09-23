@@ -99,8 +99,6 @@ This project examines how key baseball statistics evolved alongside this technol
 
 ## Strikeout Rates Over Time
 
-Each point represents an individual pitcher-season (minimum 30 IP), displaying real pitcher-level variation across thousands of observations. The dashed line traces the annual league average K/9 across the pre-Statcast and post-Statcast eras. Use the dropdown menu to choose individual teams and see their specific pitchers and franchise average.
-
 ::: {.graph-container}
 ```{r}
 #| label: plot-k9-pitcher-seasons
@@ -253,11 +251,11 @@ p_k9
 ```
 :::
 
+Each point represents an individual pitcher-season (minimum 30 IP), displaying real pitcher-level variation across thousands of observations. The dashed line traces the annual league average K/9 across the pre-Statcast and post-Statcast eras. Use the dropdown menu to choose individual teams and see their specific pitchers and franchise average.
+
 Between the pre-Statcast era (2005–2014) and the post-Statcast era (2015–2025), average pitcher strikeout rates increased from **7.21** to **8.63 K/9**, representing a **19.7% increase** across eras (and a **31.5% increase** from 6.55 in 2005 to 8.61 in 2025).
 
 ## Hard Hit Rate Over Time
-
-Each point represents a qualifying hitter's individual hard-hit rate for that season, showing real individual-level variation across 4,251 player-seasons. The dashed line traces the annual league average across the pre-Statcast era (BIS video-scouted Hard%) and the Statcast era (radar-measured exit velocity ≥ 95 mph). Use the dropdown menu to choose individual teams and see their specific hitters and franchise average.
 
 ::: {.graph-container}
 ```{r}
@@ -411,6 +409,8 @@ p_hard_hit <- p_hard_hit |> layout(
 p_hard_hit
 ```
 :::
+
+Each point represents a qualifying hitter's individual hard-hit rate for that season, showing real individual-level variation across 4,251 player-seasons. The dashed line traces the annual league average across the pre-Statcast era (BIS video-scouted Hard%) and the Statcast era (radar-measured exit velocity ≥ 95 mph). Use the dropdown menu to choose individual teams and see their specific hitters and franchise average.
 
 Average hard-hit rates rose from **30.5%** in the pre-Statcast era to **38.5%** in the Statcast era—a **26.2% relative increase** (an 8.0 percentage-point gain, climbing to 42.1% by 2025). Note that part of this shift coincides with the change in data measurement (scout observation vs. automated radar tracking).
 

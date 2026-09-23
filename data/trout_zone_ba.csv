@@ -1,0 +1,19 @@
+year,era,zone,x,y,name,ab,hits,ba,ba_label
+2014,Pre-Statcast (2014 MVP),1,1,3,Up-In,30,5,0.167,.167
+2014,Pre-Statcast (2014 MVP),2,2,3,Up-Mid,38,2,0.053,.053
+2014,Pre-Statcast (2014 MVP),3,3,3,Up-Away,13,1,0.077,.077
+2014,Pre-Statcast (2014 MVP),4,1,2,Mid-In,52,14,0.269,.269
+2014,Pre-Statcast (2014 MVP),5,2,2,Heart,58,25,0.431,.431
+2014,Pre-Statcast (2014 MVP),6,3,2,Mid-Away,56,16,0.286,.286
+2014,Pre-Statcast (2014 MVP),7,1,1,Low-In,50,22,0.44,.440
+2014,Pre-Statcast (2014 MVP),8,2,1,Low-Mid,57,26,0.456,.456
+2014,Pre-Statcast (2014 MVP),9,3,1,Low-Away,68,21,0.309,.309
+2019,Post-Statcast (2019 MVP),1,1,3,Up-In,23,5,0.217,.217
+2019,Post-Statcast (2019 MVP),2,2,3,Up-Mid,35,9,0.257,.257
+2019,Post-Statcast (2019 MVP),3,3,3,Up-Away,25,5,0.2,.200
+2019,Post-Statcast (2019 MVP),4,1,2,Mid-In,57,15,0.263,.263
+2019,Post-Statcast (2019 MVP),5,2,2,Heart,62,23,0.371,.371
+2019,Post-Statcast (2019 MVP),6,3,2,Mid-Away,48,17,0.354,.354
+2019,Post-Statcast (2019 MVP),7,1,1,Low-In,30,7,0.233,.233
+2019,Post-Statcast (2019 MVP),8,2,1,Low-Mid,36,13,0.361,.361
+2019,Post-Statcast (2019 MVP),9,3,1,Low-Away,46,20,0.435,.435

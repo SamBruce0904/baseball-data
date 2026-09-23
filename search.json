@@ -1,0 +1,121 @@
+[
+  {
+    "objectID": "more-data.html",
+    "href": "more-data.html",
+    "title": "Interactive Comparison: Strikeouts vs. Hard-Hit Rate",
+    "section": "",
+    "text": "Use the filter buttons at the top to toggle between individual player points and clean league-average trends.\n\n\n\n\n\n\nBy displaying both sets of player-seasons together, we can observe how the entire distribution of player performances shifted upward along with the introduction of Statcast in 2015."
+  },
+  {
+    "objectID": "more-data.html#interactive-era-comparison-20052025",
+    "href": "more-data.html#interactive-era-comparison-20052025",
+    "title": "Interactive Comparison: Strikeouts vs. Hard-Hit Rate",
+    "section": "",
+    "text": "Use the filter buttons at the top to toggle between individual player points and clean league-average trends.\n\n\n\n\n\n\nBy displaying both sets of player-seasons together, we can observe how the entire distribution of player performances shifted upward along with the introduction of Statcast in 2015."
+  },
+  {
+    "objectID": "story.html#analysis-the-two-way-technological-surge",
+    "href": "story.html#analysis-the-two-way-technological-surge",
+    "title": "Story",
+    "section": "Analysis: The Two-Way Technological Surge",
+    "text": "Analysis: The Two-Way Technological Surge\nTracing Major League Baseball from 2005 (bottom left) to 2025 (top right) reveals an unmistakable diagonal migration: the game simultaneously produced significantly higher strikeout rates and higher exit velocities. Rather than giving an edge to only pitchers or only hitters, tracking technology elevated both disciplines at once. Pitchers leveraged spin tracking and release metrics to drive league average strikeouts from 6.55 K/9 in 2005 to 8.61 K/9 in 2025 (a 31.5% increase). Concurrently, hitters used launch angle and exit velocity analytics to optimize swing paths for hard contact, lifting average hard-hit rates from 30.2% up to 42.1%. This trajectory confirms that technology did not simply tilt the scale toward one side—it redefined the physical standards of the sport."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "I play baseball here at New College of Florida, and as an athlete, it’s impossible not to notice the ongoing debate between old-school baseball tradition and modern analytics. Traditionalists often rely on feel, instinct, and repetition, while the modern analytical movement uses tracking technology to measure spin rates, launch angles, and exit velocities.\nTo see whether technology has actually driven measurable improvement across the game, I analyzed historical player-season data from Lahman’s Baseball Database, comparing the pre-Statcast era (2005–2014) to the modern Statcast era (2015–2025). This project investigates how tracking data has reshaped both pitching dominance and offensive contact at baseball’s highest level."
+  },
+  {
+    "objectID": "about.html#about-me-this-project",
+    "href": "about.html#about-me-this-project",
+    "title": "About",
+    "section": "",
+    "text": "I play baseball here at New College of Florida, and as an athlete, it’s impossible not to notice the ongoing debate between old-school baseball tradition and modern analytics. Traditionalists often rely on feel, instinct, and repetition, while the modern analytical movement uses tracking technology to measure spin rates, launch angles, and exit velocities.\nTo see whether technology has actually driven measurable improvement across the game, I analyzed historical player-season data from Lahman’s Baseball Database, comparing the pre-Statcast era (2005–2014) to the modern Statcast era (2015–2025). This project investigates how tracking data has reshaped both pitching dominance and offensive contact at baseball’s highest level."
+  },
+  {
+    "objectID": "stats-context.html",
+    "href": "stats-context.html",
+    "title": "Context of the Statistics",
+    "section": "",
+    "text": "Understanding the metrics used throughout this analysis helps clarify how Major League Baseball has evolved. Here is what each statistic measures and why it matters in modern baseball."
+  },
+  {
+    "objectID": "stats-context.html#strikeouts-per-9-innings-k9",
+    "href": "stats-context.html#strikeouts-per-9-innings-k9",
+    "title": "Context of the Statistics",
+    "section": "Strikeouts per 9 Innings (K/9)",
+    "text": "Strikeouts per 9 Innings (K/9)\n\nWhat it is: The average number of strikeouts a pitcher records for every 9 innings pitched. \\[\\text{K/9} = \\frac{\\text{Strikeouts} \\times 9}{\\text{Innings Pitched}}\\]\nWhy it matters: Strikeouts are the purest measure of pitching dominance because they take the defense and ballpark dimensions out of the equation. As pitchers gained access to pitch-tracking data, league-wide K/9 rose significantly."
+  },
+  {
+    "objectID": "stats-context.html#hard-hit-percentage-hard-hit",
+    "href": "stats-context.html#hard-hit-percentage-hard-hit",
+    "title": "Context of the Statistics",
+    "section": "Hard-Hit Percentage (Hard-Hit %)",
+    "text": "Hard-Hit Percentage (Hard-Hit %)\n\nWhat it is: The proportion of batted balls hit with an exit velocity of 95 mph or greater. \\[\\text{Hard-Hit \\%} = \\frac{\\text{Batted Balls with Exit Velocity} \\ge 95\\text{ mph}}{\\text{Total Batted Balls}} \\times 100\\]\nPre-Statcast vs. Statcast measurement:\n\nPre-Statcast (2005–2014): Tracked by Baseball Info Solutions (BIS) scouts manually classifying contact into soft, medium, or hard trajectories through video analysis.\nStatcast Era (2015–Present): Tracked automatically using radar and high-speed cameras to record exact exit velocities.\n\nWhy it matters: Exit velocity is the strongest predictor of offensive success. Balls struck at 95+ mph produce the vast majority of extra-base hits and home runs."
+  },
+  {
+    "objectID": "stats-context.html#whiff-rate",
+    "href": "stats-context.html#whiff-rate",
+    "title": "Context of the Statistics",
+    "section": "Whiff Rate",
+    "text": "Whiff Rate\n\nWhat it is: The percentage of total swings where a batter swings and misses completely. \\[\\text{Whiff Rate} = \\frac{\\text{Swings and Misses}}{\\text{Total Swings}} \\times 100\\]\nWhy it matters: Unlike batting average or overall contact, whiff rate pinpoints a batter’s vulnerability against specific pitch types and zone locations—such as high fastballs or low breaking balls outside the zone."
+  },
+  {
+    "objectID": "stats-context.html#the-statcast-context",
+    "href": "stats-context.html#the-statcast-context",
+    "title": "Context of the Statistics",
+    "section": "The Statcast Context",
+    "text": "The Statcast Context\nPrior to 2015, player evaluation relied on box-score results and scout observation. The introduction of Statcast in all 30 MLB stadiums equipped teams with automated optical cameras and radar to track:\n\nPitch movement & spin rate: Helping pitchers design sharper, higher-rising fastballs that create more swings and misses.\nBatted-ball trajectories (exit velocity & launch angle): Helping hitters optimize their swing paths to elevate balls with high exit velocities.\n\nThis data revolution explains why the league migrated diagonally toward higher strikeouts and harder-hit balls at the same time."
+  },
+  {
+    "objectID": "stats-context.html#learn-more",
+    "href": "stats-context.html#learn-more",
+    "title": "Context of the Statistics",
+    "section": "Learn More",
+    "text": "Learn More\nFor full definitions and further reading on every tracking metric, explore the official MLB Statcast Glossary."
+  },
+  {
+    "objectID": "players.html",
+    "href": "players.html",
+    "title": "Players",
+    "section": "",
+    "text": "The evolution between Mike Trout’s 2014 and 2019 strike zones illustrates how tracking technology created a data-driven arms race between hitters and pitchers. In the early Statcast era, teams utilized high-speed optical cameras and radar to measure pitch spin rates and induced vertical break, discovering that elevated fastballs were uniquely effective at generating whiffs against modern uppercut swing paths. Concurrently, hitters used granular pitch-tracking feedback and video analytics to eliminate swing inefficiencies, allowing Trout to virtually master the middle of the plate—his whiff rate in the heart of the zone dropped from 12.2% in 2014 down to just 4.9% in 2019. In response, pitchers adjusted their scouting heat maps away from the center and attacked the upper quadrant with high-spin velocity, elevating his whiff rate at the top of the zone to 23.0%. This shift demonstrates the broader impact of Statcast: as tracking data helped elite hitters dominate hittable pitches, pitchers adapted by targeting the extreme vertical boundaries of the strike zone.\n\n\n\n\n\n\n\n\n\nBetween 2014 and 2019, Trout virtually eliminated whiffs in the heart of the zone—dropping from a 12.2% whiff rate down to 4.9%. Concurrently, pitchers shifted to attacking him with high fastballs, where his swing-and-miss rate increased to 23% in the upper-inside quadrant."
+  },
+  {
+    "objectID": "players.html#strike-zone-whiff-rate-mike-trout-pre--vs.-post-statcast-mvp",
+    "href": "players.html#strike-zone-whiff-rate-mike-trout-pre--vs.-post-statcast-mvp",
+    "title": "Players",
+    "section": "",
+    "text": "The evolution between Mike Trout’s 2014 and 2019 strike zones illustrates how tracking technology created a data-driven arms race between hitters and pitchers. In the early Statcast era, teams utilized high-speed optical cameras and radar to measure pitch spin rates and induced vertical break, discovering that elevated fastballs were uniquely effective at generating whiffs against modern uppercut swing paths. Concurrently, hitters used granular pitch-tracking feedback and video analytics to eliminate swing inefficiencies, allowing Trout to virtually master the middle of the plate—his whiff rate in the heart of the zone dropped from 12.2% in 2014 down to just 4.9% in 2019. In response, pitchers adjusted their scouting heat maps away from the center and attacked the upper quadrant with high-spin velocity, elevating his whiff rate at the top of the zone to 23.0%. This shift demonstrates the broader impact of Statcast: as tracking data helped elite hitters dominate hittable pitches, pitchers adapted by targeting the extreme vertical boundaries of the strike zone.\n\n\n\n\n\n\n\n\n\nBetween 2014 and 2019, Trout virtually eliminated whiffs in the heart of the zone—dropping from a 12.2% whiff rate down to 4.9%. Concurrently, pitchers shifted to attacking him with high fastballs, where his swing-and-miss rate increased to 23% in the upper-inside quadrant."
+  },
+  {
+    "objectID": "players.html#strike-zone-whiff-rate-paul-goldschmidt-pre--vs.-post-statcast-mvp",
+    "href": "players.html#strike-zone-whiff-rate-paul-goldschmidt-pre--vs.-post-statcast-mvp",
+    "title": "Players",
+    "section": "Strike Zone Whiff Rate: Paul Goldschmidt (Pre- vs. Post-Statcast MVP)",
+    "text": "Strike Zone Whiff Rate: Paul Goldschmidt (Pre- vs. Post-Statcast MVP)\nPaul Goldschmidt provides a compelling look at how an elite slugger adapted his approach across nearly a decade of Statcast tracking. In his 2013 breakout season with the Arizona Diamondbacks (where he led the NL in home runs, RBIs, and slugging as the MVP runner-up), pitchers challenged him heavily inside, resulting in a 28.8% whiff rate in the low-and-inside corner. By his 2022 NL MVP campaign with the St. Louis Cardinals, Goldschmidt tightened his plate discipline against inside pitches—lowering his low-inside whiff rate to 12.2%—while pitchers adapted by challenging him on the outer edge and up in the zone with high-spin fastballs.\n\n\n\n\n\n\n\n\n\nComparing his 2013 and 2022 seasons reveals how Goldschmidt tightened his coverage on inside pitches—slashing his low-inside swing-and-miss rate from 28.8% down to 12.2%—en route to taking home the 2022 NL MVP award."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Baseball Analysis",
+    "section": "",
+    "text": "The introduction of Major League Baseball’s Statcast system in 2015 revolutionized how the sport is measured and played. By deploying high-resolution cameras and radar across every ballpark, Statcast enabled the tracking of granular metrics like exit velocity, launch angle, and pitch spin rates on every play.\nThis project examines how key baseball statistics evolved alongside this technological shift. By comparing trends across the pre-Statcast era (2005–2014) and post-Statcast era (2015–2025), we analyze whether the availability of tracking data coincided with noticeable changes in pitching strikeout rates (K/9) and hitter hard-hit percentages."
+  },
+  {
+    "objectID": "index.html#strikeout-rates-over-time",
+    "href": "index.html#strikeout-rates-over-time",
+    "title": "Baseball Analysis",
+    "section": "Strikeout Rates Over Time",
+    "text": "Strikeout Rates Over Time\nEach point represents an individual pitcher-season (minimum 30 IP), displaying real pitcher-level variation across thousands of observations. The dashed line traces the annual league average K/9 across the pre-Statcast and post-Statcast eras. Use the dropdown menu to choose individual teams and see their specific pitchers and franchise average.\n\n\n\n\n\n\n\n\nBetween the pre-Statcast era (2005–2014) and the post-Statcast era (2015–2025), average pitcher strikeout rates increased from 7.21 to 8.63 K/9, representing a 19.7% increase across eras (and a 31.5% increase from 6.55 in 2005 to 8.61 in 2025)."
+  },
+  {
+    "objectID": "index.html#hard-hit-rate-over-time",
+    "href": "index.html#hard-hit-rate-over-time",
+    "title": "Baseball Analysis",
+    "section": "Hard Hit Rate Over Time",
+    "text": "Hard Hit Rate Over Time\nEach point represents a qualifying hitter’s individual hard-hit rate for that season, showing real individual-level variation across 4,251 player-seasons. The dashed line traces the annual league average across the pre-Statcast era (BIS video-scouted Hard%) and the Statcast era (radar-measured exit velocity ≥ 95 mph). Use the dropdown menu to choose individual teams and see their specific hitters and franchise average.\n\n\n\n\n\n\n\n\nAverage hard-hit rates rose from 30.5% in the pre-Statcast era to 38.5% in the Statcast era—a 26.2% relative increase (an 8.0 percentage-point gain, climbing to 42.1% by 2025). Note that part of this shift coincides with the change in data measurement (scout observation vs. automated radar tracking)."
+  }
+]

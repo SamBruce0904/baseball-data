@@ -84,13 +84,60 @@ h2 {
   border-left: 4px solid var(--baseball-red);
 }
 
-/* Clean Plot & Widget Containers */
-.html-widget, .plotly {
+/* Responsive Graph Containers */
+.graph-container {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+
+.graph-container .cell-output-display {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* Clean Plot & Widget Containers - responsive with no scrollbars */
+.plotly.html-widget,
+.html-widget {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
   border-radius: 10px;
   border: 1px solid #edf2f7;
   padding: 6px;
   background-color: #ffffff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  overflow: hidden !important;
+}
+
+/* Prevent double borders, double padding, and scrollbars on inner Plotly containers */
+.plotly.html-widget .plot-container.plotly {
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
+.plotly.html-widget .svg-container {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+.plotly.html-widget svg.main-svg {
+  max-width: 100% !important;
+}
+
+@media (max-width: 768px) {
+  #quarto-document-content {
+    padding: 1.25rem 1rem;
+  }
 }
 
 /* Subtle table & code styling */

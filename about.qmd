@@ -2,8 +2,18 @@
 title: "About"
 ---
 
-## About Me & This Project
+## About Me
 
-I play baseball here at New College of Florida, and as an athlete, it's impossible not to notice the ongoing debate between old-school baseball tradition and modern analytics. Traditionalists often rely on feel, instinct, and repetition, while the modern analytical movement uses tracking technology to measure spin rates, launch angles, and exit velocities.
+**Sam Bruce**  
+Student and baseball player at [New College of Florida](https://www.ncf.edu/).
 
-To see whether technology has actually driven measurable improvement across the game, I analyzed historical player-season data from Lahman's Baseball Database, comparing the pre-Statcast era (2005–2014) to the modern Statcast era (2015–2025). This project investigates how tracking data has reshaped both pitching dominance and offensive contact at baseball's highest level.
+- **Email:** [sammyrbruce@icloud.com](mailto:sammyrbruce@icloud.com)
+- **GitHub:** [SamBruce0904](https://github.com/SamBruce0904)
+- **Project Repository:** [baseball-data](https://github.com/SamBruce0904/baseball-data)
+
+As an athlete playing baseball at New College of Florida, I have always been fascinated by the tension between old-school baseball instinct and modern tracking technology. This project explores whether the rise of tracking metrics has measurably changed outcomes across modern baseball eras.
+
+## Data Sources
+
+The data for this project comes from two primary sources: historical player and pitching statistics from the [Lahman Baseball Database](https://www.seanlahman.com/baseball-archive/statistics/) (accessed via the [Lahman R package](https://cran.r-project.org/package=Lahman)), and modern batted-ball tracking metrics (such as exit velocity and hard-hit rates) from MLB's [Baseball Savant / Statcast](https://baseballsavant.mlb.com/). Together, these datasets allow us to compare pre-Statcast (2005–2014) and Statcast-era (2015–2025) trends across Major League Baseball.
+

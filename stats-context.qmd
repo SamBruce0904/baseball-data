@@ -11,22 +11,80 @@ execute:
 #| message: false
 library(tidyverse)
 library(plotly)
+library(crosstalk)
+library(htmltools)
 
+# 1. Load Statcast hitter data
 statcast_hitters <- read_csv("data/statcast_hitters.csv", show_col_types = FALSE)
 names(statcast_hitters)[1] <- "player_name"
 
-hitters_2024 <- statcast_hitters |>
-  filter(year == 2024, attempts >= 150) |>
+# Helper to normalize player names for joining with Lahman
+clean_hitter_name <- function(x) {
+  has_comma <- grepl(",", x)
+  x[has_comma] <- paste(sub("^.*,\\s*", "", x[has_comma]), sub(",.*$", "", x[has_comma]))
+  x <- iconv(x, to = "ASCII//TRANSLIT")
+  x <- gsub("['\"`^~.]", "", x)
+  x <- gsub("\\s+(Jr|Sr|II|III|IV)$", "", x, ignore.case = TRUE)
+  x <- stringr::str_squish(x)
+  x <- tolower(x)
+  gsub("\\b([a-z])\\s+([a-z])\\b", "\\1\\2", x)
+}
+
+# 2. Get franchise name mappings from Lahman
+teams_map <- Lahman::Teams |>
+  group_by(franchID) |>
+  slice_max(yearID, n = 1, with_ties = FALSE) |>
+  ungroup() |>
+  select(franchID, team_name = name) |>
+  mutate(team_name = case_when(
+    franchID == "ANA" ~ "Los Angeles Angels",
+    franchID == "OAK" ~ "Oakland Athletics",
+    franchID == "FLA" ~ "Miami Marlins",
+    franchID == "TBD" ~ "Tampa Bay Rays",
+    franchID == "WSN" ~ "Washington Nationals",
+    TRUE ~ team_name
+  ))
+
+# 3. Match each hitter to their team for that season
+hitter_teams <- Lahman::Batting |>
+  filter(yearID >= 2015) |>
+  group_by(playerID, yearID) |>
+  slice_max(AB, n = 1, with_ties = FALSE) |>
+  ungroup() |>
+  left_join(Lahman::People |> select(playerID, nameFirst, nameLast), by = "playerID") |>
+  mutate(cname = clean_hitter_name(paste(nameFirst, nameLast))) |>
+  select(cname, year = yearID, teamID) |>
+  distinct(cname, year, .keep_all = TRUE) |>
+  left_join(
+    Lahman::Teams |> select(yearID, teamID, franchID) |> distinct(),
+    by = c("year" = "yearID", "teamID")
+  ) |>
+  left_join(teams_map, by = "franchID") |>
+  select(cname, year, team_name)
+
+# 4. Prepare combined hitter dataset with qualified batted balls
+hitters_clean <- statcast_hitters |>
+  filter(attempts >= 100) |>
   mutate(
     clean_name = if_else(
       grepl(",", player_name),
       paste(sub("^.*,\\s*", "", player_name), sub(",.*$", "", player_name)),
       player_name
-    )
+    ),
+    cname = clean_hitter_name(player_name)
+  ) |>
+  left_join(hitter_teams, by = c("cname", "year")) |>
+  mutate(
+    team_name = replace_na(team_name, "Other / Multi-Team"),
+    year = factor(year, levels = as.character(2025:2015))
   )
 
-plot_ly(
-  data = hitters_2024,
+# 5. SharedData handle for coordinated client-side filtering
+sd <- SharedData$new(hitters_clean)
+
+# 6. Build interactive scatter plot
+p <- plot_ly(
+  data = sd,
   x = ~ev95percent,
   y = ~brl_percent,
   type = "scatter",
@@ -41,23 +99,34 @@ plot_ly(
     opacity = 0.85
   ),
   text = ~paste0(
-    "<b>", clean_name, "</b> (2024)<br>",
+    "<b>", clean_name, "</b> (", year, ")<br>",
+    "Team: ", team_name, "<br>",
     "Hard-Hit Rate (95+ mph): ", ev95percent, "%<br>",
     "Barrel Rate: ", brl_percent, "%<br>",
     "Avg Exit Velocity: ", avg_hit_speed, " mph"
   ),
   hoverinfo = "text",
-  height = 420
+  height = 460
 ) |>
   layout(
     title = list(
-      text = "<b>Why 95+ MPH Matters: Hard-Hit Rate vs. Barrel Rate (2024)</b><br><sup>Hitters who hit the ball 95+ mph most often produce the highest percentage of barrels (extra-base hits)</sup>",
+      text = "<b>Why 95+ MPH Matters: Hard-Hit Rate vs. Barrel Rate</b><br><sup>Hitters who hit the ball 95+ mph most often produce the highest percentage of barrels</sup>",
       font = list(size = 13)
     ),
     xaxis = list(title = "Hard-Hit Rate (% of batted balls >= 95 mph)", zeroline = FALSE),
     yaxis = list(title = "Barrel Rate (% optimal EV & launch angle)", zeroline = FALSE),
     margin = list(t = 60, b = 50, l = 50, r = 40)
   )
+
+# 7. Render side-by-side dropdown selectors and chart
+tagList(
+  bscols(
+    widths = c(6, 6),
+    filter_select("filter_year", "Select Season:", sd, ~year),
+    filter_select("filter_team", "Select Team:", sd, ~team_name)
+  ),
+  p
+)
 ```
 :::
 

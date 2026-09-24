@@ -89,7 +89,7 @@ h2 {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: visible;
   margin: 1.5rem 0;
 }
 
@@ -97,7 +97,11 @@ h2 {
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow: visible;
+}
+
+.selectize-dropdown {
+  z-index: 1050 !important;
 }
 
 /* Clean Plot & Widget Containers - responsive with no scrollbars */

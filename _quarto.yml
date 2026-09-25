@@ -7,19 +7,30 @@ website:
     left:
       - href: index.qmd
         text: Home
+        icon: house-door
       - href: story.qmd
         text: Story
+        icon: graph-up
       - href: more-data.qmd
         text: More Data
+        icon: bar-chart-line
       - href: players.qmd
         text: Players
+        icon: person-bounding-box
       - href: stats-context.qmd
         text: Stats Explained
+        icon: journal-text
       - href: about.qmd
         text: About
+        icon: info-circle
+    right:
+      - icon: github
+        href: https://github.com/SamBruce0904/baseball-data
 
 format:
   html:
-    theme: cosmo
+    theme:
+      light: cosmo
+      dark: darkly
     css: styles.css
     toc: true

@@ -110,12 +110,84 @@ h2 {
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid #edf2f7;
-  padding: 6px;
+  padding: 8px;
   background-color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
   overflow: hidden !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.plotly.html-widget:hover,
+.html-widget:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(13, 34, 64, 0.09);
+}
+
+/* Hero Banner Component */
+.hero-banner {
+  background: linear-gradient(135deg, #0d2240 0%, #1a365d 60%, #ba122b 120%);
+  color: #ffffff;
+  padding: 2.5rem 2.8rem;
+  border-radius: 14px;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 25px rgba(13, 34, 64, 0.2);
+}
+
+.hero-banner h1 {
+  color: #ffffff !important;
+  margin-top: 0;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.hero-banner p {
+  color: #e2e8f0;
+  font-size: 1.15rem;
+  margin-bottom: 0;
+}
+
+/* Elevated Card Component */
+.elevated-card {
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 16px rgba(13, 34, 64, 0.06);
+  padding: 1.5rem 1.8rem;
+  margin: 1.5rem 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.elevated-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(13, 34, 64, 0.12);
+}
+
+/* Dark Mode Overrides */
+body.quarto-dark {
+  background-color: #0f141c;
+  background-image: none;
+}
+
+body.quarto-dark #quarto-document-content {
+  background: #181f2a;
+  border-color: #263242;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+body.quarto-dark h1,
+body.quarto-dark h2,
+body.quarto-dark h3,
+body.quarto-dark h4 {
+  color: #f1f5f9;
+}
+
+body.quarto-dark .plotly.html-widget,
+body.quarto-dark .html-widget {
+  background-color: #1e2633;
+  border-color: #2b384c;
 }
 
 /* Prevent double borders, double padding, and scrollbars on inner Plotly containers */

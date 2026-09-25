@@ -21,11 +21,11 @@ goldy_zone <- read_csv("data/goldschmidt_zone_swing.csv") |>
 goldy_pitches <- read_csv("data/goldschmidt_pitches.csv") |>
   mutate(era = fct_relevel(era, "Pre-Statcast (2013 MVP Runner-Up)", "Post-Statcast (2022 MVP)"))
 
-# Load Giancarlo Stanton pitch & zone swing data (2014 vs. 2017)
-stanton_zone <- read_csv("data/stanton_zone_swing.csv") |>
-  mutate(era = fct_relevel(era, "Pre-Statcast (2014 MVP Runner-Up)", "Post-Statcast (2017 MVP)"))
-stanton_pitches <- read_csv("data/stanton_pitches.csv") |>
-  mutate(era = fct_relevel(era, "Pre-Statcast (2014 MVP Runner-Up)", "Post-Statcast (2017 MVP)"))
+# Load J.D. Martinez pitch & zone swing data (2014 vs. 2018)
+martinez_zone <- read_csv("data/martinez_zone_swing.csv") |>
+  mutate(era = fct_relevel(era, "Pre-Statcast (2014 Breakout)", "Post-Statcast (2018 All-Star)"))
+martinez_pitches <- read_csv("data/martinez_pitches.csv") |>
+  mutate(era = fct_relevel(era, "Pre-Statcast (2014 Breakout)", "Post-Statcast (2018 All-Star)"))
 
 # Load Batting Average by Zone datasets
 trout_zone_ba <- read_csv("data/trout_zone_ba.csv") |>
@@ -38,15 +38,22 @@ goldy_zone_ba <- read_csv("data/goldschmidt_zone_ba.csv") |>
 goldy_at_bats <- read_csv("data/goldschmidt_at_bats.csv") |>
   mutate(era = fct_relevel(era, "Pre-Statcast (2013 MVP Runner-Up)", "Post-Statcast (2022 MVP)"))
 
-stanton_zone_ba <- read_csv("data/stanton_zone_ba.csv") |>
-  mutate(era = fct_relevel(era, "Pre-Statcast (2014 MVP Runner-Up)", "Post-Statcast (2017 MVP)"))
-stanton_at_bats <- read_csv("data/stanton_at_bats.csv") |>
-  mutate(era = fct_relevel(era, "Pre-Statcast (2014 MVP Runner-Up)", "Post-Statcast (2017 MVP)"))
+martinez_zone_ba <- read_csv("data/martinez_zone_ba.csv") |>
+  mutate(era = fct_relevel(era, "Pre-Statcast (2014 Breakout)", "Post-Statcast (2018 All-Star)"))
+martinez_at_bats <- read_csv("data/martinez_at_bats.csv") |>
+  mutate(era = fct_relevel(era, "Pre-Statcast (2014 Breakout)", "Post-Statcast (2018 All-Star)"))
 ```
 
-## Strike Zone Swing Rate: Mike Trout (Pre- vs. Post-Statcast MVP)
+::: {.hero-banner}
+# Player Strike Zone Case Studies
+How did elite hitters respond to the Statcast era? By examining pitch-by-pitch tracking data across pre- and post-Statcast seasons, we trace how superstars like Mike Trout, Paul Goldschmidt, and J.D. Martinez adapted their swing decisions and zone coverage.
+:::
 
-Analyzing Mike Trout's strike zone swing rates between 2014 and 2019 reveals how granular tracking data refined modern plate discipline. As pitch-tracking systems like Statcast provided hitters with detailed heat maps of their run production, hitters learned to become hyper-selective—focusing swings on pitches in the heart of the zone where they do maximum damage, while laying off pitcher-friendly edge locations. In 2014, Trout was relatively balanced across the zone, swinging at **62.7%** of pitches over the middle and **54.5%** in the upper-inside corner. By his 2019 MVP season, his swing rate in the heart of the plate climbed to **77.4%**, while he cut down his swings in the upper-inside quadrant to just **36.8%**.
+::: {.panel-tabset}
+
+## Mike Trout (2014 vs. 2019 MVP)
+
+Analyzing Mike Trout's strike zone between 2014 and 2019 reveals how pitch-tracking data refined modern plate discipline and run production. Hitters learned to become hyper-selective—focusing swings on pitches in the heart of the zone where they do maximum damage, while laying off pitcher-friendly edge locations. Comparing his swing decisions directly with his batting average highlights where his selectivity paid off.
 
 ```{r}
 #| label: plot-trout-strikezone
@@ -99,12 +106,6 @@ ggplot() +
   )
 ```
 
-Between 2014 and 2019, Trout dialed his aggression into the middle of the plate—increasing his swing rate in the heart of the zone from **62.7%** to **77.4%**—while being far more patient on elevated inside pitches (dropping from **54.5%** to **36.8%**).
-
-### Mike Trout: Batting Average by Strike Zone Location
-
-While swing rates illustrate where a hitter chooses to swing, batting average by zone reveals where those swings actually produce hits. In 2014, Trout was lethal in the lower and middle regions of the zone (hitting **.456** low-middle, **.440** low-inside, and **.431** in the heart), but struggled on elevated pitches, batting just **.053** up-middle. By 2019, Trout dramatically improved his coverage of high pitches—raising his up-middle batting average to **.257**—while hitting **.435** on pitches low-away.
-
 ```{r}
 #| label: plot-trout-ba
 #| fig-width: 8.5
@@ -156,7 +157,9 @@ ggplot() +
   )
 ```
 
-## Strike Zone Swing Rate: Paul Goldschmidt (Pre- vs. Post-Statcast MVP)
+Between 2014 and 2019, Trout dialed his aggression into the middle of the plate—increasing his swing rate in the heart of the zone from **62.7%** to **77.4%**—while being far more patient on elevated inside pitches (dropping from **54.5%** to **36.8%**). This selectivity mirrored his results: in 2014, Trout was lethal in the lower and middle regions of the zone (hitting **.456** low-middle, **.440** low-inside, and **.431** in the heart), but struggled on elevated pitches, batting just **.053** up-middle. By 2019, Trout dramatically improved his coverage of high pitches—raising his up-middle batting average to **.257**—while hitting **.435** on pitches low-away.
+
+## Paul Goldschmidt (Pre- vs. Post-Statcast MVP)
 
 Paul Goldschmidt provides a compelling look at how an elite slugger adapted his swing decisions across nearly a decade of pitch tracking. In his 2013 breakout season with the Arizona Diamondbacks (where he was the NL MVP runner-up), Goldschmidt was particularly eager to attack pitches elevated in the zone, recording a **76.7% swing rate** in the upper-middle quadrant and **71.1%** mid-in. By his 2022 NL MVP campaign with the St. Louis Cardinals, Goldschmidt adopted a more balanced approach—maintaining a **66.8% swing rate** in the heart of the zone while becoming more selective on low and away pitches (**49.5%** swing rate).
 
@@ -211,12 +214,6 @@ ggplot() +
   )
 ```
 
-Comparing his 2013 and 2022 seasons reveals how Goldschmidt developed a patient, disciplined approach across the strike zone—remaining aggressive in the heart (**66.8%**) while cutting swings on outer-edge chase zones.
-
-### Paul Goldschmidt: Batting Average by Strike Zone Location
-
-Examining Goldschmidt's batting average by zone highlights his shift from a high-ball hitter in Arizona to an all-fields, lower-zone punisher in St. Louis. In his 2013 season, Goldschmidt crushed pitches in the upper third of the strike zone, hitting **.432** up-and-away and **.405** up-middle. In his 2022 NL MVP campaign, pitchers combated his high-ball power, forcing Goldschmidt to adjust down—where he batted **.397** in the heart, **.391** low-middle, and **.350** low-and-away.
-
 ```{r}
 #| label: plot-goldschmidt-ba
 #| fig-width: 8.5
@@ -268,18 +265,22 @@ ggplot() +
   )
 ```
 
-## Strike Zone Swing Rate: Giancarlo Stanton (Pre- vs. Post-Statcast MVP)
+Comparing his 2013 and 2022 seasons reveals how Goldschmidt developed a patient, disciplined approach across the strike zone—remaining aggressive in the heart (**66.8%**) while cutting swings on outer-edge chase zones. Examining his batting average highlights his shift from a high-ball hitter in Arizona to an all-fields, lower-zone punisher in St. Louis. In 2013, Goldschmidt crushed pitches in the upper third of the strike zone, hitting **.432** up-and-away and **.405** up-middle. In 2022, pitchers combated his high-ball power, forcing Goldschmidt to adjust down—where he batted **.397** in the heart, **.391** low-middle, and **.350** low-and-away.
 
-Giancarlo Stanton's historical power in his 59-home-run 2017 MVP season highlights his willingness to do damage on hittable pitches across the zone. In 2014, when Stanton finished as the NL MVP runner-up, he attacked pitches inside and over the heart aggressively (**72.3%** in the center and **75.4%** up-and-in), while swinging on **56.9%** of low-away pitches. By 2017, Stanton became even more aggressive on pitches up in the zone, swinging at an overwhelming **79.7%** of up-and-in pitches and **75.4%** in the heart, while laying off pitches low-and-away (**52.2%** swing rate).
+
+
+## J.D. Martinez (Pre- vs. Post-Statcast Breakout)
+
+After overhauling his swing mechanics prior to the 2014 season, J.D. Martinez emerged as one of baseball's premier sluggers. By his 2018 championship season with the Boston Red Sox, Statcast data and launch angle optimization helped him refine his plate aggression even further.
 
 ```{r}
-#| label: plot-stanton-strikezone
+#| label: plot-martinez-strikezone
 #| fig-width: 8.5
 #| fig-height: 4.8
 ggplot() +
   # Semi-transparent zone tiles colored by swing rate
   geom_tile(
-    data = stanton_zone,
+    data = martinez_zone,
     aes(x = factor(x), y = factor(y), fill = swing_pct),
     alpha = 0.35,
     color = "grey40",
@@ -287,7 +288,7 @@ ggplot() +
   ) +
   # Individual pitch dots jittered inside their respective zone
   geom_jitter(
-    data = stanton_pitches,
+    data = martinez_pitches,
     aes(x = factor(x), y = factor(y), color = outcome),
     width = 0.35,
     height = 0.35,
@@ -296,7 +297,7 @@ ggplot() +
   ) +
   # Zone swing % labels
   geom_label(
-    data = stanton_zone,
+    data = martinez_zone,
     aes(x = factor(x), y = factor(y), label = paste0(round(swing_pct, 1), "%")),
     alpha = 0.75,
     fontface = "bold",
@@ -310,7 +311,7 @@ ggplot() +
   facet_wrap(~era) +
   coord_fixed() +
   labs(
-    title = "Giancarlo Stanton Strike Zone: Pitch Decisions & Swing Rates",
+    title = "J.D. Martinez Strike Zone: Pitch Decisions & Swing Rates",
     subtitle = "Points represent in-zone pitches (grey = take, red = swing) over zone swing %",
     x = "Horizontal Location (to RHB)",
     y = "Vertical Location"
@@ -323,20 +324,14 @@ ggplot() +
   )
 ```
 
-Comparing Stanton's 2014 and 2017 campaigns shows his aggressive upper-zone coverage—driving his up-and-in swing rate close to **80%** while cutting down on chase swings low and away.
-
-### Giancarlo Stanton: Batting Average by Strike Zone Location
-
-Looking at Stanton's batting average by zone illustrates how pitchers attacked him differently between his two MVP-caliber seasons. In 2014, Stanton punished mistake pitches across the upper quadrant, batting **.538** up-and-away and **.400** up-and-in, alongside a **.462** mark in the heart. In his 2017 MVP season, pitchers combated his power with elevated velocity at the top of the zone (holding him to **.200** up-middle and **.217** up-in). Stanton compensated by doing immense damage on pitches down in the zone—batting **.383** low-inside and **.371** low-middle while crushing **.410** in the heart.
-
 ```{r}
-#| label: plot-stanton-ba
+#| label: plot-martinez-ba
 #| fig-width: 8.5
 #| fig-height: 4.8
 ggplot() +
   # Semi-transparent zone tiles colored by batting average
   geom_tile(
-    data = stanton_zone_ba,
+    data = martinez_zone_ba,
     aes(x = factor(x), y = factor(y), fill = ba),
     alpha = 0.35,
     color = "grey40",
@@ -344,7 +339,7 @@ ggplot() +
   ) +
   # Individual at-bat dots jittered inside their respective zone
   geom_jitter(
-    data = stanton_at_bats,
+    data = martinez_at_bats,
     aes(x = factor(x), y = factor(y), color = outcome),
     width = 0.35,
     height = 0.35,
@@ -353,7 +348,7 @@ ggplot() +
   ) +
   # Zone BA labels
   geom_label(
-    data = stanton_zone_ba,
+    data = martinez_zone_ba,
     aes(x = factor(x), y = factor(y), label = ba_label),
     alpha = 0.75,
     fontface = "bold",
@@ -367,7 +362,7 @@ ggplot() +
   facet_wrap(~era) +
   coord_fixed() +
   labs(
-    title = "Giancarlo Stanton Strike Zone: Batting Average by Location",
+    title = "J.D. Martinez Strike Zone: Batting Average by Location",
     subtitle = "Points represent individual at-bats (grey = out, red = hit) over zone batting average",
     x = "Horizontal Location (to RHB)",
     y = "Vertical Location"
@@ -379,5 +374,9 @@ ggplot() +
     plot.title = element_text(face = "bold", size = 13)
   )
 ```
+
+Comparing Martinez's 2014 breakout in Detroit with his 2018 championship season in Boston highlights how his refined plate discipline fueled elite production. Martinez became markedly more aggressive on pitches elevated in the zone—increasing his swing rate up-and-in from **73.9%** to **82.6%**—while demonstrating greater patience low-and-in (dropping from **78.6%** to **68.3%**). Most dramatically, Statcast-driven launch angle optimization helped him expand his damage zone to the outer half: his batting average on pitches up-and-away surged from **.000** in 2014 to **.526** in 2018, alongside a **.517** mark middle-inside.
+
+:::
 
 

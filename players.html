@@ -42,10 +42,14 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3eaf8885052e939fbbbe2bfb513fc417.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-3eaf8885052e939fbbbe2bfb513fc417.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-484c4b0e8deb3318580b7df5d0298e1a.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-3eaf8885052e939fbbbe2bfb513fc417.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -78,7 +82,169 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -96,32 +262,46 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="./index.html"> <i class="bi bi-house-door" role="img">
+</i> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./story.html"> 
+    <a class="nav-link" href="./story.html"> <i class="bi bi-graph-up" role="img">
+</i> 
 <span class="menu-text">Story</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./more-data.html"> 
+    <a class="nav-link" href="./more-data.html"> <i class="bi bi-bar-chart-line" role="img">
+</i> 
 <span class="menu-text">More Data</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./players.html" aria-current="page"> 
+    <a class="nav-link active" href="./players.html" aria-current="page"> <i class="bi bi-person-bounding-box" role="img">
+</i> 
 <span class="menu-text">Players</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./stats-context.html"> 
+    <a class="nav-link" href="./stats-context.html"> <i class="bi bi-journal-text" role="img">
+</i> 
 <span class="menu-text">Stats Explained</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html"> 
+    <a class="nav-link" href="./about.html"> <i class="bi bi-info-circle" role="img">
+</i> 
 <span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/SamBruce0904/baseball-data"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -135,23 +315,13 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#strike-zone-swing-rate-mike-trout-pre--vs.-post-statcast-mvp" id="toc-strike-zone-swing-rate-mike-trout-pre--vs.-post-statcast-mvp" class="nav-link active" data-scroll-target="#strike-zone-swing-rate-mike-trout-pre--vs.-post-statcast-mvp">Strike Zone Swing Rate: Mike Trout (Pre- vs.&nbsp;Post-Statcast MVP)</a>
-  <ul class="collapse">
-  <li><a href="#mike-trout-batting-average-by-strike-zone-location" id="toc-mike-trout-batting-average-by-strike-zone-location" class="nav-link" data-scroll-target="#mike-trout-batting-average-by-strike-zone-location">Mike Trout: Batting Average by Strike Zone Location</a></li>
-  </ul></li>
-  <li><a href="#strike-zone-swing-rate-paul-goldschmidt-pre--vs.-post-statcast-mvp" id="toc-strike-zone-swing-rate-paul-goldschmidt-pre--vs.-post-statcast-mvp" class="nav-link" data-scroll-target="#strike-zone-swing-rate-paul-goldschmidt-pre--vs.-post-statcast-mvp">Strike Zone Swing Rate: Paul Goldschmidt (Pre- vs.&nbsp;Post-Statcast MVP)</a>
-  <ul class="collapse">
-  <li><a href="#paul-goldschmidt-batting-average-by-strike-zone-location" id="toc-paul-goldschmidt-batting-average-by-strike-zone-location" class="nav-link" data-scroll-target="#paul-goldschmidt-batting-average-by-strike-zone-location">Paul Goldschmidt: Batting Average by Strike Zone Location</a></li>
-  </ul></li>
-  <li><a href="#strike-zone-swing-rate-giancarlo-stanton-pre--vs.-post-statcast-mvp" id="toc-strike-zone-swing-rate-giancarlo-stanton-pre--vs.-post-statcast-mvp" class="nav-link" data-scroll-target="#strike-zone-swing-rate-giancarlo-stanton-pre--vs.-post-statcast-mvp">Strike Zone Swing Rate: Giancarlo Stanton (Pre- vs.&nbsp;Post-Statcast MVP)</a>
-  <ul class="collapse">
-  <li><a href="#giancarlo-stanton-batting-average-by-strike-zone-location" id="toc-giancarlo-stanton-batting-average-by-strike-zone-location" class="nav-link" data-scroll-target="#giancarlo-stanton-batting-average-by-strike-zone-location">Giancarlo Stanton: Batting Average by Strike Zone Location</a></li>
-  </ul></li>
+  <li><a href="#player-strike-zone-case-studies" id="toc-player-strike-zone-case-studies" class="nav-link active" data-scroll-target="#player-strike-zone-case-studies">Player Strike Zone Case Studies</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -172,9 +342,15 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="strike-zone-swing-rate-mike-trout-pre--vs.-post-statcast-mvp" class="level2">
-<h2 class="anchored" data-anchor-id="strike-zone-swing-rate-mike-trout-pre--vs.-post-statcast-mvp">Strike Zone Swing Rate: Mike Trout (Pre- vs.&nbsp;Post-Statcast MVP)</h2>
-<p>Analyzing Mike Trout’s strike zone swing rates between 2014 and 2019 reveals how granular tracking data refined modern plate discipline. As pitch-tracking systems like Statcast provided hitters with detailed heat maps of their run production, hitters learned to become hyper-selective—focusing swings on pitches in the heart of the zone where they do maximum damage, while laying off pitcher-friendly edge locations. In 2014, Trout was relatively balanced across the zone, swinging at <strong>62.7%</strong> of pitches over the middle and <strong>54.5%</strong> in the upper-inside corner. By his 2019 MVP season, his swing rate in the heart of the plate climbed to <strong>77.4%</strong>, while he cut down his swings in the upper-inside quadrant to just <strong>36.8%</strong>.</p>
+<section id="player-strike-zone-case-studies" class="level1 hero-banner">
+<h1>Player Strike Zone Case Studies</h1>
+<p>How did elite hitters respond to the Statcast era? By examining pitch-by-pitch tracking data across pre- and post-Statcast seasons, we trace how superstars like Mike Trout, Paul Goldschmidt, and J.D. Martinez adapted their swing decisions and zone coverage.</p>
+</section>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">Mike Trout (2014 vs.&nbsp;2019 MVP)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Paul Goldschmidt (Pre- vs.&nbsp;Post-Statcast MVP)</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false" href="">J.D. Martinez (Pre- vs.&nbsp;Post-Statcast Breakout)</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<p>Analyzing Mike Trout’s strike zone between 2014 and 2019 reveals how pitch-tracking data refined modern plate discipline and run production. Hitters learned to become hyper-selective—focusing swings on pitches in the heart of the zone where they do maximum damage, while laying off pitcher-friendly edge locations. Comparing his swing decisions directly with his batting average highlights where his selectivity paid off.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -184,10 +360,6 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Between 2014 and 2019, Trout dialed his aggression into the middle of the plate—increasing his swing rate in the heart of the zone from <strong>62.7%</strong> to <strong>77.4%</strong>—while being far more patient on elevated inside pitches (dropping from <strong>54.5%</strong> to <strong>36.8%</strong>).</p>
-<section id="mike-trout-batting-average-by-strike-zone-location" class="level3">
-<h3 class="anchored" data-anchor-id="mike-trout-batting-average-by-strike-zone-location">Mike Trout: Batting Average by Strike Zone Location</h3>
-<p>While swing rates illustrate where a hitter chooses to swing, batting average by zone reveals where those swings actually produce hits. In 2014, Trout was lethal in the lower and middle regions of the zone (hitting <strong>.456</strong> low-middle, <strong>.440</strong> low-inside, and <strong>.431</strong> in the heart), but struggled on elevated pitches, batting just <strong>.053</strong> up-middle. By 2019, Trout dramatically improved his coverage of high pitches—raising his up-middle batting average to <strong>.257</strong>—while hitting <strong>.435</strong> on pitches low-away.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -197,10 +369,9 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="strike-zone-swing-rate-paul-goldschmidt-pre--vs.-post-statcast-mvp" class="level2">
-<h2 class="anchored" data-anchor-id="strike-zone-swing-rate-paul-goldschmidt-pre--vs.-post-statcast-mvp">Strike Zone Swing Rate: Paul Goldschmidt (Pre- vs.&nbsp;Post-Statcast MVP)</h2>
+<p>Between 2014 and 2019, Trout dialed his aggression into the middle of the plate—increasing his swing rate in the heart of the zone from <strong>62.7%</strong> to <strong>77.4%</strong>—while being far more patient on elevated inside pitches (dropping from <strong>54.5%</strong> to <strong>36.8%</strong>). This selectivity mirrored his results: in 2014, Trout was lethal in the lower and middle regions of the zone (hitting <strong>.456</strong> low-middle, <strong>.440</strong> low-inside, and <strong>.431</strong> in the heart), but struggled on elevated pitches, batting just <strong>.053</strong> up-middle. By 2019, Trout dramatically improved his coverage of high pitches—raising his up-middle batting average to <strong>.257</strong>—while hitting <strong>.435</strong> on pitches low-away.</p>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>Paul Goldschmidt provides a compelling look at how an elite slugger adapted his swing decisions across nearly a decade of pitch tracking. In his 2013 breakout season with the Arizona Diamondbacks (where he was the NL MVP runner-up), Goldschmidt was particularly eager to attack pitches elevated in the zone, recording a <strong>76.7% swing rate</strong> in the upper-middle quadrant and <strong>71.1%</strong> mid-in. By his 2022 NL MVP campaign with the St.&nbsp;Louis Cardinals, Goldschmidt adopted a more balanced approach—maintaining a <strong>66.8% swing rate</strong> in the heart of the zone while becoming more selective on low and away pitches (<strong>49.5%</strong> swing rate).</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -211,10 +382,6 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-<p>Comparing his 2013 and 2022 seasons reveals how Goldschmidt developed a patient, disciplined approach across the strike zone—remaining aggressive in the heart (<strong>66.8%</strong>) while cutting swings on outer-edge chase zones.</p>
-<section id="paul-goldschmidt-batting-average-by-strike-zone-location" class="level3">
-<h3 class="anchored" data-anchor-id="paul-goldschmidt-batting-average-by-strike-zone-location">Paul Goldschmidt: Batting Average by Strike Zone Location</h3>
-<p>Examining Goldschmidt’s batting average by zone highlights his shift from a high-ball hitter in Arizona to an all-fields, lower-zone punisher in St.&nbsp;Louis. In his 2013 season, Goldschmidt crushed pitches in the upper third of the strike zone, hitting <strong>.432</strong> up-and-away and <strong>.405</strong> up-middle. In his 2022 NL MVP campaign, pitchers combated his high-ball power, forcing Goldschmidt to adjust down—where he batted <strong>.397</strong> in the heart, <strong>.391</strong> low-middle, and <strong>.350</strong> low-and-away.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
@@ -224,41 +391,51 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </div>
-</section>
-</section>
-<section id="strike-zone-swing-rate-giancarlo-stanton-pre--vs.-post-statcast-mvp" class="level2">
-<h2 class="anchored" data-anchor-id="strike-zone-swing-rate-giancarlo-stanton-pre--vs.-post-statcast-mvp">Strike Zone Swing Rate: Giancarlo Stanton (Pre- vs.&nbsp;Post-Statcast MVP)</h2>
-<p>Giancarlo Stanton’s historical power in his 59-home-run 2017 MVP season highlights his willingness to do damage on hittable pitches across the zone. In 2014, when Stanton finished as the NL MVP runner-up, he attacked pitches inside and over the heart aggressively (<strong>72.3%</strong> in the center and <strong>75.4%</strong> up-and-in), while swinging on <strong>56.9%</strong> of low-away pitches. By 2017, Stanton became even more aggressive on pitches up in the zone, swinging at an overwhelming <strong>79.7%</strong> of up-and-in pitches and <strong>75.4%</strong> in the heart, while laying off pitches low-and-away (<strong>52.2%</strong> swing rate).</p>
+<p>Comparing his 2013 and 2022 seasons reveals how Goldschmidt developed a patient, disciplined approach across the strike zone—remaining aggressive in the heart (<strong>66.8%</strong>) while cutting swings on outer-edge chase zones. Examining his batting average highlights his shift from a high-ball hitter in Arizona to an all-fields, lower-zone punisher in St.&nbsp;Louis. In 2013, Goldschmidt crushed pitches in the upper third of the strike zone, hitting <strong>.432</strong> up-and-away and <strong>.405</strong> up-middle. In 2022, pitchers combated his high-ball power, forcing Goldschmidt to adjust down—where he batted <strong>.397</strong> in the heart, <strong>.391</strong> low-middle, and <strong>.350</strong> low-and-away.</p>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<p>After overhauling his swing mechanics prior to the 2014 season, J.D. Martinez emerged as one of baseball’s premier sluggers. By his 2018 championship season with the Boston Red Sox, Statcast data and launch angle optimization helped him refine his plate aggression even further.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="players_files/figure-html/plot-stanton-strikezone-1.png" class="img-fluid figure-img" width="816"></p>
+<p><img src="players_files/figure-html/plot-martinez-strikezone-1.png" class="img-fluid figure-img" width="816"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Comparing Stanton’s 2014 and 2017 campaigns shows his aggressive upper-zone coverage—driving his up-and-in swing rate close to <strong>80%</strong> while cutting down on chase swings low and away.</p>
-<section id="giancarlo-stanton-batting-average-by-strike-zone-location" class="level3">
-<h3 class="anchored" data-anchor-id="giancarlo-stanton-batting-average-by-strike-zone-location">Giancarlo Stanton: Batting Average by Strike Zone Location</h3>
-<p>Looking at Stanton’s batting average by zone illustrates how pitchers attacked him differently between his two MVP-caliber seasons. In 2014, Stanton punished mistake pitches across the upper quadrant, batting <strong>.538</strong> up-and-away and <strong>.400</strong> up-and-in, alongside a <strong>.462</strong> mark in the heart. In his 2017 MVP season, pitchers combated his power with elevated velocity at the top of the zone (holding him to <strong>.200</strong> up-middle and <strong>.217</strong> up-in). Stanton compensated by doing immense damage on pitches down in the zone—batting <strong>.383</strong> low-inside and <strong>.371</strong> low-middle while crushing <strong>.410</strong> in the heart.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="players_files/figure-html/plot-stanton-ba-1.png" class="img-fluid figure-img" width="816"></p>
+<p><img src="players_files/figure-html/plot-martinez-ba-1.png" class="img-fluid figure-img" width="816"></p>
 </figure>
+</div>
+</div>
+</div>
+<p>Comparing Martinez’s 2014 breakout in Detroit with his 2018 championship season in Boston highlights how his refined plate discipline fueled elite production. Martinez became markedly more aggressive on pitches elevated in the zone—increasing his swing rate up-and-in from <strong>73.9%</strong> to <strong>82.6%</strong>—while demonstrating greater patience low-and-in (dropping from <strong>78.6%</strong> to <strong>68.3%</strong>). Most dramatically, Statcast-driven launch angle optimization helped him expand his damage zone to the outer half: his batting average on pitches up-and-away surged from <strong>.000</strong> in 2014 to <strong>.526</strong> in 2018, alongside a <strong>.517</strong> mark middle-inside.</p>
 </div>
 </div>
 </div>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
     const anchorJS = new window.AnchorJS();
     anchorJS.options = {

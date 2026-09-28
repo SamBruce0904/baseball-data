@@ -10,7 +10,6 @@ execute:
 From traditional box scores to millimeter-accurate radar tracking, modern metrics quantify aspects of baseball that were once invisible. Explore the key definitions, mathematical formulas, and interactive distributions below.
 :::
 
-::: {.elevated-card}
 ::: {.graph-container}
 ```{r}
 #| label: plot-hard-hit-vs-barrels
@@ -134,7 +133,6 @@ tagList(
   p
 )
 ```
-:::
 :::
 
 Understanding the metrics used throughout this analysis helps clarify how Major League Baseball has evolved. Here is what each statistic measures and why it matters in modern baseball.

@@ -41,7 +41,6 @@ yearly_k9 <- pitcher_seasons |>
 Side-by-side tracking reveals how both pitching and hitting metrics shifted upward together. Use the interactive controls to toggle between league-wide distributions and individual player seasons.
 :::
 
-::: {.elevated-card}
 ::: {.graph-container}
 ```{r}
 #| label: plot-interactive-comparison
@@ -181,7 +180,6 @@ plot_ly(height = 480) |>
   ) |>
   config(responsive = TRUE)
 ```
-:::
 :::
 
 ::: {.elevated-card}

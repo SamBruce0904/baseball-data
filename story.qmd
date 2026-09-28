@@ -31,7 +31,6 @@ combined_trajectory <- inner_join(yearly_hh, yearly_k9, by = c("year" = "yearID"
 Tracking technology did not simply favor pitchers or hitters in isolation—it accelerated both disciplines at once. Follow the 20-year trajectory mapping strikeout rates directly against hard-hit contact across modern baseball eras.
 :::
 
-::: {.elevated-card}
 ::: {.graph-container}
 ```{r}
 #| label: plot-game-trajectory
@@ -95,7 +94,6 @@ plot_ly(data = combined_trajectory, x = ~avg_so9, y = ~avg_hard_hit, height = 45
   ) |>
   config(responsive = TRUE)
 ```
-:::
 :::
 
 ::: {.elevated-card}

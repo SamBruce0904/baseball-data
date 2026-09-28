@@ -8,18 +8,18 @@ website:
       - href: index.qmd
         text: Home
         icon: house-door
+      - href: stats-context.qmd
+        text: Stats Explained
+        icon: journal-text
       - href: story.qmd
-        text: Story
+        text: Correlation
         icon: graph-up
       - href: more-data.qmd
-        text: More Data
+        text: Comparison
         icon: bar-chart-line
       - href: players.qmd
         text: Players
         icon: person-bounding-box
-      - href: stats-context.qmd
-        text: Stats Explained
-        icon: journal-text
       - href: about.qmd
         text: About
         icon: info-circle

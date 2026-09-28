@@ -36,10 +36,13 @@ yearly_k9 <- pitcher_seasons |>
   summarize(avg_so9 = round(mean(so9), 2))
 ```
 
-## Interactive Era Comparison (2005–2025)
+::: {.hero-banner}
+# Comparative Trajectories Across Eras
+Side-by-side tracking reveals how both pitching and hitting metrics shifted upward together. Use the interactive controls to toggle between league-wide distributions and individual player seasons.
+:::
 
-Use the filter buttons at the top to toggle between individual player points and clean league-average trends.
-
+::: {.elevated-card}
+::: {.graph-container}
 ```{r}
 #| label: plot-interactive-comparison
 plot_ly(height = 480) |>
@@ -178,7 +181,13 @@ plot_ly(height = 480) |>
   ) |>
   config(responsive = TRUE)
 ```
+:::
+:::
 
-By displaying both sets of player-seasons together, we can observe how the entire distribution of player performances shifted upward along with the introduction of Statcast in 2015.
+::: {.elevated-card}
+## 🔍 Distribution Shift
+
+By displaying both sets of player-seasons together, we can observe how the entire distribution of player performances shifted upward along with the introduction of Statcast in 2015. Rather than isolated outliers driving the change, the league median and upper quantiles across all 30 teams moved in unison toward higher strikeout totals and harder exit velocities.
+:::
 
 

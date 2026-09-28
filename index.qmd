@@ -94,29 +94,44 @@ yearly_pitching <- pitcher_seasons |>
 ```
 
 ::: {.hero-banner}
-# The Statcast Era
-The introduction of Major League Baseball's Statcast system in 2015 revolutionized how the sport is measured and played. By deploying high-resolution cameras and radar across every ballpark, Statcast enabled the tracking of granular metrics like exit velocity, launch angle, and pitch spin rates on every play.
+# Tracking Technology & The Modern MLB Era
+Since the rollout of radar and camera tracking systems like Statcast, Major League Baseball has undergone a dramatic transformation. Explore how pitching strikeout rates and hitter hard-hit contact have evolved in tandem across every team from 2005 through 2025.
 :::
 
-This project examines how key baseball statistics evolved alongside this technological shift. By comparing trends across the pre-Statcast era (2005–2014) and post-Statcast era (2015–2025), we analyze whether the availability of tracking data coincided with noticeable changes in pitching strikeout rates (K/9) and hitter hard-hit percentages.
-
-::: {.columns}
-::: {.column width="48%"}
-::: {.elevated-card style="text-align: center; border-top: 4px solid #163664;"}
-### ⚡ Pitching Evolution
-#### **+19.7%** K/9 Increase
-League average K/9 jumped from **7.21** to **8.63** as spin and movement tracking proliferated.
+::: {.stat-grid}
+::: {.stat-box}
+::: {.stat-number}
++31.5%
+:::
+::: {.stat-label}
+Strikeout Rate
+:::
+::: {.stat-detail}
+6.55 &rarr; 8.61 K/9 league average
 :::
 :::
 
-::: {.column width="4%"}
+::: {.stat-box}
+::: {.stat-number}
++39.4%
+:::
+::: {.stat-label}
+Hard-Hit Rate
+:::
+::: {.stat-detail}
+30.2% &rarr; 42.1% contact &ge; 95 mph
+:::
 :::
 
-::: {.column width="48%"}
-::: {.elevated-card style="text-align: center; border-top: 4px solid #ba122b;"}
-### 💥 Hitting Evolution
-#### **+26.2%** Hard-Hit Surge
-Hard-hit rate rose from **30.5%** to **38.5%** as launch angle and exit velocity became focal points.
+::: {.stat-box}
+::: {.stat-number}
+20 Seasons
+:::
+::: {.stat-label}
+Era Comparison
+:::
+::: {.stat-detail}
+Pre-Statcast vs. Statcast eras
 :::
 :::
 :::
@@ -446,3 +461,30 @@ Average hard-hit rates rose from **30.5%** in the pre-Statcast era to **38.5%** 
 
 :::
 
+::: {.hero-banner}
+# The Statcast Era
+The introduction of Major League Baseball's Statcast system in 2015 revolutionized how the sport is measured and played. By deploying high-resolution cameras and radar across every ballpark, Statcast enabled the tracking of granular metrics like exit velocity, launch angle, and pitch spin rates on every play.
+:::
+
+This project examines how key baseball statistics evolved alongside this technological shift. By comparing trends across the pre-Statcast era (2005–2014) and post-Statcast era (2015–2025), we analyze whether the availability of tracking data coincided with noticeable changes in pitching strikeout rates (K/9) and hitter hard-hit percentages.
+
+::: {.columns}
+::: {.column width="48%"}
+::: {.elevated-card style="text-align: center; border-top: 4px solid #163664;"}
+### ⚡ Pitching Evolution
+#### **+19.7%** K/9 Increase
+League average K/9 jumped from **7.21** to **8.63** as spin and movement tracking proliferated.
+:::
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+::: {.elevated-card style="text-align: center; border-top: 4px solid #ba122b;"}
+### 💥 Hitting Evolution
+#### **+26.2%** Hard-Hit Surge
+Hard-hit rate rose from **30.5%** to **38.5%** as launch angle and exit velocity became focal points.
+:::
+:::
+:::

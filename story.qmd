@@ -1,5 +1,5 @@
 ---
-title: "Story"
+title: "Correlation"
 execute:
   echo: false
   warning: false
@@ -26,6 +26,13 @@ combined_trajectory <- inner_join(yearly_hh, yearly_k9, by = c("year" = "yearID"
   mutate(era = if_else(year < 2015, "Pre-Statcast (2005–2014)", "Post-Statcast (2015–2025)"))
 ```
 
+::: {.hero-banner}
+# The Correlation: K/9 vs. Hard-Hit Rate
+Tracking technology did not simply favor pitchers or hitters in isolation—it accelerated both disciplines at once. Follow the 20-year trajectory mapping strikeout rates directly against hard-hit contact across modern baseball eras.
+:::
+
+::: {.elevated-card}
+::: {.graph-container}
 ```{r}
 #| label: plot-game-trajectory
 plot_ly(data = combined_trajectory, x = ~avg_so9, y = ~avg_hard_hit, height = 450) |>
@@ -88,7 +95,16 @@ plot_ly(data = combined_trajectory, x = ~avg_so9, y = ~avg_hard_hit, height = 45
   ) |>
   config(responsive = TRUE)
 ```
+:::
+:::
 
-## Analysis: The Two-Way Technological Surge
+::: {.elevated-card}
+## 📈 Key Insight: The Two-Way Surge
 
-Tracing Major League Baseball from 2005 (bottom left) to 2025 (top right) reveals an unmistakable diagonal migration: the game simultaneously produced significantly higher strikeout rates and higher exit velocities. Rather than giving an edge to only pitchers or only hitters, tracking technology elevated both disciplines at once. Pitchers leveraged spin tracking and release metrics to drive league average strikeouts from **6.55 K/9 in 2005** to **8.61 K/9 in 2025** (a 31.5% increase). Concurrently, hitters used launch angle and exit velocity analytics to optimize swing paths for hard contact, lifting average hard-hit rates from **30.2%** up to **42.1%**. This trajectory confirms that technology did not simply tilt the scale toward one side—it redefined the physical standards of the sport.
+Tracing Major League Baseball from 2005 (bottom left) to 2025 (top right) reveals an unmistakable diagonal migration: the game simultaneously produced significantly higher strikeout rates and higher exit velocities. Rather than giving an edge to only pitchers or only hitters, tracking technology elevated both disciplines at once.
+
+- ⚡ **Pitchers:** Leveraged spin tracking and release metrics to drive league-average strikeouts from **6.55 K/9 in 2005** to **8.61 K/9 in 2025** (a **+31.5%** increase).
+- 💥 **Hitters:** Leveraged launch angle and exit velocity analytics to optimize swing paths for hard contact, lifting average hard-hit rates from **30.2%** up to **42.1%** (a **+39.4%** increase).
+
+This diagonal trajectory confirms that technology did not simply tilt the scale toward one side—it redefined the physical standards of the sport.
+:::

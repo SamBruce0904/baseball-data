@@ -23,14 +23,8 @@ website:
       - href: about.qmd
         text: About
         icon: info-circle
-    right:
-      - icon: github
-        href: https://github.com/SamBruce0904/baseball-data
-
 format:
   html:
-    theme:
-      light: cosmo
-      dark: darkly
+    theme: cosmo
     css: styles.css
-    toc: true
+    toc: false

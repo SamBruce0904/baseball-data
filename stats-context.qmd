@@ -156,13 +156,6 @@ $$\text{Hard-Hit \%} = \frac{\text{Batted Balls with Exit Velocity} \ge 95\text{
 - **Why it matters:** Exit velocity is the strongest predictor of offensive success. Balls struck at 95+ mph produce the vast majority of extra-base hits and home runs.
 :::
 
-::: {.elevated-card}
-## 🎯 Whiff Rate
-
-- **What it is:** The percentage of total swings where a batter swings and misses completely.
-$$\text{Whiff Rate} = \frac{\text{Swings and Misses}}{\text{Total Swings}} \times 100$$
-- **Why it matters:** Unlike batting average or overall contact, whiff rate pinpoints a batter's vulnerability against specific pitch types and zone locations—such as high fastballs or low breaking balls outside the zone.
-:::
 
 ::: {.elevated-card}
 ## 📡 The Statcast Context
